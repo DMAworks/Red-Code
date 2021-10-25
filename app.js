@@ -1,12 +1,19 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
+const path = require('path');
 const PORT = process.env.PORT || 8000
 
 const app = express()
 
 app.use(express.json())
 app.use("/auth", authRouter)
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/public/sign-in.html');
+    });
 
 const start = async () => {
     try {
@@ -16,6 +23,7 @@ const start = async () => {
         console.log(e)
     }
 }
+
 
 start()
 
