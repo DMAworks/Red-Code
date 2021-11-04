@@ -1,29 +1,28 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const authRouter = require('./authRouter')
-const path = require('path');
-const PORT = process.env.PORT || 8000
+const express = require("express");
+const mongoose = require("mongoose");
+const authRouter = require("./authRouter");
+const PORT = process.env.PORT || 8000;
+const path = require("path");
+var bodyParser = require('body-parser')
 
-const app = express()
+const app = express(authRouter);
 
-app.use(express.json())
-app.use("/auth", authRouter)
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/sign-in.html');
-    });
+app.use(express.json());
+app.post("/login", urlencodedParser, authRouter);
 
 const start = async () => {
-    try {
-        await mongoose.connect(`mongodb+srv://Red_Code:Red_Code@cluster0.nvkal.mongodb.net/Red_Code?retryWrites=true&w=majority`)
-        app.listen(PORT, () => console.log(`Сервер запущен на порте ${PORT}`))
-    } catch (e) {
-        console.log(e)
-    }
-}
+  try {
+    await mongoose.connect(
+      `mongodb+srv://Red_Code:Red_Code@cluster0.nvkal.mongodb.net/Red_Code?retryWrites=true&w=majority`
+    );
+    app.listen(PORT, () => console.log(`server started on port ${PORT}`));
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-
-start()
-
+start();

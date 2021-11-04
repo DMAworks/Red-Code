@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/CSS/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="/JS/script.js" defer></script>
+  <!-- <script src=../app.js></script> -->
+</head>
+
+<body>
+  <div class="content">
+    <div class="wrapper">
+      <div class="btns">
+        <button class="btn btn-primary auth" for="auth">Вход</button>
+        <button class="btn btn-primary reg" for="reg">Регистрация</button>
+      </div>
+      <div class="logo"></div>
+      <form class="auth-form hide" method="POST" action="/login" onsubmit="return false">
+        <input name="username" class="form-control username" type="email" placeholder="Введите E-mail" />
+        <input name="password" class="form-control password" type="current-password" placeholder="Введите пароль" />
+        <a href="#">Я забыл свой E-mail или пароль</a>
+        <button class="button btn btn-primary">Войти</button>
+      </form>
+      <span class="err-log">asd</span>
+
+      <!-- <form class="reg-form hide">
+          <input
+          class="form-control"
+          type="email"
+          placeholder="Введите E-mail"
+          />
+          <input
+          class="form-control"
+          type="text"
+          placeholder="Введите свое имя"
+          />
+          <input
+          class="form-control"
+          type="password"
+          placeholder="Введите пароль"
+          />
+          <button class="button btn btn-primary">Регистрация</button>
+          
+          <div class="recover">
+            <input type="checkbox" />
+            <label
+            >Ознакомлен(-а) и принимаю
+            <a href="#">условия регистрации</a></label
+            >
+          </div>
+        </form> -->
+      <!-- </div>
+    </div> -->
+
+      <script>
+        $(document).ready(function () {
+          const url = 'http://localhost:8000/login';
+          fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'text/plain'
+            },
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              console.log(text);
+              return value = text;
+            });
+          });
+          $('.button').click(function () {
+
+
+            // const response = await fetch(url, {
+            // method: 'POST',
+            // mode: 'cors',
+            // headers: {
+            //   'Content-Type': 'text/plain'
+            // },
+            // });
+            // const text = response.text();
+            // console.log(text);
+            $('.err-log').html(value);
+            console.log(value)
+          });
+        })
+
+      </script>
+</body>
+
+</html>
