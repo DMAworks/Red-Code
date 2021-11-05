@@ -3,16 +3,14 @@ const mongoose = require("mongoose");
 const authRouter = require("./authRouter");
 const PORT = process.env.PORT || 8000;
 const path = require("path");
-var bodyParser = require('body-parser')
 
-const app = express(authRouter);
-
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
-app.post("/login", urlencodedParser, authRouter);
+
+app.use("/auth", authRouter);
 
 const start = async () => {
   try {
