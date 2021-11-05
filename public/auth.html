@@ -87,7 +87,7 @@
         /*          Авторизация           */
 
         $(".button-log").click(function () {
-          const urlLog = "http://localhost:8000/auth/login";
+          const urlLog = "https://red-code.herokuapp.com/auth/login";
           fetch(urlLog, {
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -100,7 +100,7 @@
           }).then(function (response) {
             return response.text().then(function (text) {
               if (response.status === 200) {
-                window.location.href = "http://localhost:8000/main.html";
+                window.location.href = "https://red-code.herokuapp.com/main.html";
               }
               return $(".err-log").html(text);
             });
@@ -110,7 +110,7 @@
         /*          Регитсрация           */
 
         $(".button-reg").click(function () {
-          const urlReg = "http://localhost:8000/auth/registration";
+          const urlReg = "https://red-code.herokuapp.com/auth/registration";
           fetch(urlReg, {
             headers: {
               "Content-Type": "application/json;charset=utf-8",
