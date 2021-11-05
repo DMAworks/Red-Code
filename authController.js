@@ -57,7 +57,7 @@ class authController {
           .end("<span>Введен неверный пароль</span>");
       }
       const token = generateAccessToken(user._id, user.roles);
-      return token, res.writeHead(200, { "Content-Type": "text/html" }).end("");
+      res.cookie(token), res.writeHead(200, { "Content-Type": "text/html" }).end("");
     } catch (e) {
       console.log(e);
       res
